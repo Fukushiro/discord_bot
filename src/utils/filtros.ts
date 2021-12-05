@@ -6,8 +6,10 @@ export function filtrar(message: Discord.Message<boolean>, prefix: string) {
 }
 
 export function getComando(message: Discord.Message<boolean>, prefix: string) {
-  const comandBody = message.content.slice(prefix.length);
+  const comandBody = message.content.slice(prefix.length).trim();
   const args = comandBody.split(' ');
+
   const command = args.shift()?.toLowerCase();
-  return command;
+
+  return { comando: command, args: args };
 }
